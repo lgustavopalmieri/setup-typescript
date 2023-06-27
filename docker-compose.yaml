@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   clean-code-branas:
     container_name: clean-code-branas
@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4343:4343"
+      - '4343:4343'
     volumes:
       - .:/usr/src/app
     depends_on:
@@ -23,7 +23,7 @@ services:
     logging:
       options:
         max-size: 10m
-        max-file: "3"
+        max-file: '3'
     networks:
       - clean-code-branas-network
     ports:
