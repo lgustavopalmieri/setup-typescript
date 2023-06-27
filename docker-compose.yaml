@@ -1,0 +1,36 @@
+version: "3"
+services:
+  clean-code-branas:
+    container_name: clean-code-branas
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4343:4343"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+    networks:
+      - clean-code-branas-network
+
+  db:
+    image: postgres:14.1
+    container_name: container-db
+    restart: always
+    env_file:
+      - ./config.env
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    networks:
+      - clean-code-branas-network
+    ports:
+      - 5433:5432
+
+networks:
+  clean-code-branas-network:
+
+volumes:
+  db-data:
